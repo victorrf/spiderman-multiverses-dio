@@ -34,3 +34,45 @@ function selectCarouselItem(selectedButtonElement) {
     activeButtonElement.classList.remove('s-controller__button--active');
     selectedButtonElement.classList.add('s-controller__button--active');
 }
+
+// === SUPORTE A SWIPE NO CELULAR === //
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+const swipeThreshold = 50;
+const controllerButtons = document.querySelectorAll('.s-controller__button');
+
+
+document.addEventListener('touchstart', function (e) {
+    touchStartX = e.changedTouches[0].clientX;
+});
+
+
+document.addEventListener('touchend', function (e) {
+    touchEndX = e.changedTouches[0].clientX;
+    handleSwipe();
+});
+
+function handleSwipe() {
+    const deltaX = touchEndX - touchStartX;
+
+    if (Math.abs(deltaX) < swipeThreshold) return; 
+
+    const activeButton = document.querySelector('.s-controller__button--active');
+    let currentIndex = Number(activeButton.id);
+
+    if (deltaX < 0) {
+        
+        currentIndex++;
+        if (currentIndex > controllerButtons.length) currentIndex = 1;
+    } else {
+        
+        currentIndex--;
+        if (currentIndex < 1) currentIndex = controllerButtons.length;
+    }
+
+    
+    const newButton = document.getElementById(String(currentIndex));
+    selectCarouselItem(newButton);
+}
