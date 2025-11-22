@@ -1,5 +1,3 @@
-let lastTappedCard = null;
-
 function handleMouseEnter() {
     this.classList.add('s-card--hovered');
     document.body.id = `${this.id}-hovered`;
@@ -10,25 +8,6 @@ function handleMouseLeave() {
     document.body.id = '';
 }
 
-function handleTouchStart(e) {
-
-    if (lastTappedCard === this) {
-        lastTappedCard = null;
-        return;
-    }
-
-    e.preventDefault();
-
-    const allCards = document.querySelectorAll('.s-card');
-    allCards.forEach(c => c.classList.remove('s-card--hovered'));
-    document.body.id = "";
-
-    this.classList.add('s-card--hovered');
-    document.body.id = `${this.id}-hovered`;
-
-    lastTappedCard = this;
-}
-
 function addEventListenersToCards() {
     const cards = document.querySelectorAll('.s-card');
 
@@ -37,12 +16,10 @@ function addEventListenersToCards() {
         card.addEventListener('mouseenter', handleMouseEnter);
         card.addEventListener('mouseleave', handleMouseLeave);
 
-
-        card.addEventListener('touchstart', handleTouchStart, { passive: false });
     });
 }
 
-document.addEventListener("DOMContentLoaded", addEventListenersToCards);
+document.addEventListener("DOMContentLoaded", addEventListenersToCards, false);
 
 function selectCarouselItem(selectedButtonElement) {
     const selectedItem = selectedButtonElement.id;
