@@ -117,19 +117,16 @@
   .s-wrapper .s-main-content {
     padding-left: 70px;
   }
-  
-}
 
-@media screen and (max-width: 480px) {
   .s-wrapper .s-main-content__bottom {
-    height: 75vh;
+    height: 120vh;
+    position: absolute;
   }
   
 }
 
 @media screen and (max-width: 390px) {
   .s-wrapper .s-main-content__bottom {
-    position: absolute;
     justify-content: flex-start;
     margin-top: 200px;
   }
