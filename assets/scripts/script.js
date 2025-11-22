@@ -8,6 +8,17 @@ function handleMouseLeave() {
     document.body.id = '';
 }
 
+function handleTouchStart(e) {
+    e.preventDefault();
+    
+    const allCards = document.querySelectorAll('.s-card');
+    allCards.forEach(c => c.classList.remove('s-card--hovered'));
+    document.body.id = "";
+
+    this.classList.add('s-card--hovered');
+    document.body.id = `${this.id}-hovered`;
+}
+
 function addEventListenersToCards() {
     const cardElements = document.getElementsByClassName('s-card');
     
@@ -15,10 +26,12 @@ function addEventListenersToCards() {
         const card = cardElements[i];
         card.addEventListener('mouseenter', handleMouseEnter);
         card.addEventListener('mouseleave', handleMouseLeave);
+
+        card.addEventListener('touchstart', handleTouchStart);
     }
 }
 
-document.addEventListener("DOMContentLoaded", addEventListenersToCards, false);
+document.addEventListener("DOMContentLoaded", addEventListenersToCards);
 
 function selectCarouselItem(selectedButtonElement) {
     const selectedItem = selectedButtonElement.id;
