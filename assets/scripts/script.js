@@ -1,3 +1,5 @@
+let lastTappedCard = null;
+
 function handleMouseEnter() {
     this.classList.add('s-card--hovered');
     document.body.id = `${this.id}-hovered`;
@@ -9,26 +11,35 @@ function handleMouseLeave() {
 }
 
 function handleTouchStart(e) {
+
+    if (lastTappedCard === this) {
+        lastTappedCard = null;
+        return;
+    }
+
     e.preventDefault();
-    
+
     const allCards = document.querySelectorAll('.s-card');
     allCards.forEach(c => c.classList.remove('s-card--hovered'));
     document.body.id = "";
 
     this.classList.add('s-card--hovered');
     document.body.id = `${this.id}-hovered`;
+
+    lastTappedCard = this;
 }
 
 function addEventListenersToCards() {
-    const cardElements = document.getElementsByClassName('s-card');
-    
-    for (let i = 0; i < cardElements.length; i++) {
-        const card = cardElements[i];
+    const cards = document.querySelectorAll('.s-card');
+
+    cards.forEach(card => {
+
         card.addEventListener('mouseenter', handleMouseEnter);
         card.addEventListener('mouseleave', handleMouseLeave);
 
-        card.addEventListener('touchstart', handleTouchStart);
-    }
+
+        card.addEventListener('touchstart', handleTouchStart, { passive: false });
+    });
 }
 
 document.addEventListener("DOMContentLoaded", addEventListenersToCards);
