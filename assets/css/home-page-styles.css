@@ -50,6 +50,7 @@ body::before {
 
 .s-menu__icon:hover {
     transform: scale(1.2);
+    filter: invert(1);
 }
 
 .s-container {
