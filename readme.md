@@ -34,9 +34,15 @@ A navegação é totalmente interativa, com efeitos, transições e conteúdo es
 
 
 ## 📸 Prévia do Site
+### Versão para **Mobile** e **Tablet**
+![exemplo 4](assets/images/exemplo4.png)
+![exemplo 5](assets/images/exemplo5.png)
 
+### Versão para **Desktop**
+![Spider gif](assets/images/Spider.gif)
 ![exemplo 1](./assets/images/exemplo1.png)  
 ![exemplo 2](./assets/images/exemplo2.png)
+![exemplo 3](assets/images/exemplo3.png)
 
 
 ## 📦 Como Visualizar o Projeto
